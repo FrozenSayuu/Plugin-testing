@@ -29,7 +29,7 @@ function comment_plugin_activated()
 
 /**
  * Here is where we put our javscript file for the plugin. We register it and ques it.
- */
+*/
 add_action( 'init', 'scripts_loader' );
 function scripts_loader() 
 {
@@ -48,7 +48,7 @@ function scripts_loader()
  * För att kunna ta emot vårt Ajax request så måste vi ha en funktion som hanterar det.
  * Man lägger till dessa med två add_actions, den första gäller för inloggade användare,
  * och den andra för icke inloggade användare.
- */
+*/
 add_action("wp_ajax_test_save_comment_action", "form_save_comments");
 add_action("wp_ajax_nopriv_test_save_comment_action", "form_save_comments");
 function form_save_comments()
@@ -59,6 +59,8 @@ function form_save_comments()
 		exit("Woof Woof Woof");
 	}
 
+    createNewPost();
+
 	echo json_encode( ['type' => 'success', 'message' => 'Comment saved'] );
 	wp_die();
 }
@@ -66,7 +68,7 @@ function form_save_comments()
 /**
  * Here we create a short code to be used on the website page according to: [search_hello]
  * The first name inside [] is the first parameter with add_shortcode().
- */
+*/
 add_shortcode( 'comment_hello', 'comment_says_hello' );
 function comment_says_hello( $atts = [], $content = null ) 
 {
@@ -81,20 +83,31 @@ function comment_says_hello( $atts = [], $content = null )
 
 function comment_showComment()
 {
-    $comments = "";
     include plugin_dir_path( __FILE__ ) . 'comment.php';
 }
 
-/* this goes to comment.php after i know it works without
-if(!empty($comments))
-{
-    echo '<div id="show_comment">';
-    foreach($comments as $comment)
-    {
-        echo '<article><h2>'. $comment['name'] .'</h2>'. '<p>'. $comment['comment'] .'</p>' .'</article>';
-    }
-    echo '</div>';
-}
+/**
+ * This is how we create a new post.
 */
+function createNewPost()
+{
+    global $wpdb;
+    $user_id = get_current_user_id();
+
+    wp_insert_post(
+	$thecomment = array(
+		'post_title'   => wp_strip_all_tags($_POST['name']),
+		'post_content' => $_POST['comment'],
+		'post_status'  => 'pending', //You have to manually publish it
+		'post_author'  => 1,
+		'post_type'    => 'comments',
+
+		'meta_input'    => [
+			'commenter' => wp_strip_all_tags($_POST['name']),
+			'post_author_id' => $user_id
+		    ])
+    );
+    
+}
 
 ?>

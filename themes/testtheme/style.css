@@ -5,3 +5,23 @@
  Version:      1.0.0
  Text Domain:  testtheme
 */
+
+.content
+{
+    margin: 1rem;
+}
+
+.comments
+{
+    padding-top: 1rem;
+}
+
+.c-cont
+{
+    background-color: aquamarine;
+    border-radius: 25px;
+    border: 1px solid black;
+    padding: 20px;
+    width: 200px;
+    margin-left: 1rem;
+}

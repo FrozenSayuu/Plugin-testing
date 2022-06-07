@@ -5,7 +5,7 @@ error_reporting (E_ALL);
 
 ?>
 <div class="wrap">
-    <form action="<?php echo admin_url( 'admin-ajax.php' ); ?>" method="post" id="commentform">
+    <form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" id="commentform">
         <input type="hidden" name="nonce" value="<?php echo wp_create_nonce( "test_nonce" ); ?>"/>
         <?php wp_nonce_field( 'nonce', 'test_nonce' ); ?>
         
@@ -21,4 +21,21 @@ error_reporting (E_ALL);
     </form>
 </div>
 
-<div class="wrap comments"></div>
+<div class="wrap comments">
+<?php
+//show comments here
+$comment_query = new WP_Query
+([
+	'post_type' => 'comments'
+]);
+
+if ( $comment_query->have_posts() ) :
+    while ( $comment_query->have_posts() ) : $comment_query->the_post(); ?>
+	<article class="c-cont">
+        <h5 class="c-name"><?php the_title() ?></h5>
+		<p class="c-comment"><?php the_content() ?></p>
+    </article>
+    <br>
+<?php endwhile; endif; wp_reset_postdata(); ?>
+
+</div>

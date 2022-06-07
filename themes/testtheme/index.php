@@ -1,3 +1,7 @@
+<?php
+get_header();
+?>
+
 <h1>test</h1>
 
 <?php
@@ -8,3 +12,5 @@ error_reporting (E_ALL);
 echo do_shortcode('[search_bar_hello]');
 echo do_shortcode('[comment_hello]');
 ?>
+
+</div>

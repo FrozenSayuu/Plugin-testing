@@ -26,4 +26,20 @@ function add_theme_scripts()
 
 add_action('wp_enqueue_scripts', 'add_theme_scripts');
 
+function comments() {
+	register_post_type( 'comments', [
+		'labels'      => [
+			'name'          => __( 'Comment', 'testtheme' ),
+			'singular_name' => __( 'Comment', 'testtheme' ),
+		],
+		'public'      => true,
+		'has_archive' => true,
+		'rewrite'     => ['slug' => 'comments'],
+		'menu_icon'   => '',
+		'supports'    => ['title', 'editor', 'thumbnail', 'custom-fields'],
+	] );
+}
+
+add_action( 'init', 'comments', 5 );
+
 endif;
