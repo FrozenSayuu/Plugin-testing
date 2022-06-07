@@ -1,0 +1,29 @@
+.wrap
+{
+    margin: 5rem;
+    position: relative;
+    width: 40%;
+    height: 400px;
+}
+
+#contactform
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: auto 2rem;
+    padding-left: 1rem;
+    background-color: rgba(250, 235, 215, 0.527);
+    border-radius: 45px;
+    border: 6px dotted pink;
+}
+
+#contactform label
+{
+    margin: 1rem 0;
+}
+
+#save-btn
+{
+    margin: 2rem 0;
+}

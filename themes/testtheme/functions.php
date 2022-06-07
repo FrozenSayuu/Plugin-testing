@@ -42,4 +42,20 @@ function comments() {
 
 add_action( 'init', 'comments', 5 );
 
+function contactforms() {
+	register_post_type( 'contactforms', [
+		'labels'      => [
+			'name'          => __( 'Contact Forms', 'testtheme' ),
+			'singular_name' => __( 'Contact Form', 'testtheme' ),
+		],
+		'public'      => true,
+		'has_archive' => true,
+		'rewrite'     => ['slug' => 'contactforms'],
+		'menu_icon'   => '',
+		'supports'    => ['title', 'editor', 'thumbnail', 'custom-fields'],
+	] );
+}
+
+add_action( 'init', 'contactforms', 5 );
+
 endif;
