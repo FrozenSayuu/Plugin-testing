@@ -12,6 +12,9 @@ wp-content/*
 wp-content/plugins/hello.php
 wp-content/plugins/index.php
 
+#ignore languages
+wp-content/languages
+
 # ignore specific themes
 wp-content/themes/twenty*/
 
