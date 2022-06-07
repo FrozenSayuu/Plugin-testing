@@ -12,8 +12,8 @@ wp-content/*
 wp-content/plugins/hello.php
 wp-content/plugins/index.php
 
-#ignore languages
-wp-content/languages/*
+#ignore the "languages" directory
+wp-content/languages/
 
 #ignore these files
 wp-content/index.php
