@@ -23,12 +23,14 @@ error_reporting (E_ALL);
 
 <div class="wrap comments">
 <?php
-//show comments here
+
+/* Creates a custom wp query to be able to select our custom post type */
 $comment_query = new WP_Query
 ([
 	'post_type' => 'comments'
 ]);
 
+/* Checks if it have posts to then loop through and show each one seperately */
 if ( $comment_query->have_posts() ) :
     while ( $comment_query->have_posts() ) : $comment_query->the_post(); ?>
 	<article class="c-cont">

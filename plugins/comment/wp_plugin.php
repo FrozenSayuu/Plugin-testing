@@ -45,9 +45,9 @@ function scripts_loader()
 }
 
 /**
- * För att kunna ta emot vårt Ajax request så måste vi ha en funktion som hanterar det.
- * Man lägger till dessa med två add_actions, den första gäller för inloggade användare,
- * och den andra för icke inloggade användare.
+ * To be able to recieve our Ajax request, we must have a function that handles it.
+ * You add it with these two add_actions,the first one is for logged in users,
+ * and the other is for non-logged in users.
 */
 add_action("wp_ajax_test_save_comment_action", "form_save_comments");
 add_action("wp_ajax_nopriv_test_save_comment_action", "form_save_comments");
@@ -72,13 +72,9 @@ function form_save_comments()
 add_shortcode( 'comment_hello', 'comment_says_hello' );
 function comment_says_hello( $atts = [], $content = null ) 
 {
-	$content .= "<h2>Lämna en recension</h2>";
-
 	//$latestPosts = new WP_Query();
 
     comment_showComment();
-
-	return $content;
 }
 
 function comment_showComment()
