@@ -15,6 +15,16 @@ function testtheme_setup()
         'primary' => esc_html__( 'Main navigation', 'testtheme' ), /* Navigation menu for the header */
         'footer' => esc_html__( 'Footer navigation', 'testtheme' ), /* Navigation menu for the footer */
     ));
+
+	add_theme_support( 'post-formats', [
+        'gallery',
+        'image',
+        'quote',
+        'video',
+    ] );
+
+	// Add theme support for Featured Images
+    add_theme_support( 'post-thumbnails' );
 }
 
 add_action('after_setup_theme', 'testtheme_setup');

@@ -4,6 +4,7 @@ ini_set ('display_startup_errors', 1);
 error_reporting (E_ALL);
 
 ?>
+
 <div class="wrap">
     <form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" id="commentform">
         <input type="hidden" name="nonce" value="<?php echo wp_create_nonce( "test_nonce" ); ?>"/>
@@ -22,6 +23,7 @@ error_reporting (E_ALL);
 </div>
 
 <div class="wrap comments">
+    
 <?php
 
 /* Creates a custom wp query to be able to select our custom post type */
